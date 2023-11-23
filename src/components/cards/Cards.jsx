@@ -1,10 +1,16 @@
 import Card from '../card/Card';
 
 export default function Cards({characters}) {
-   console.log(characters)
+   //console.log(characters)
    // props = {characters: [ ------- ] }
    // characters = [ --- ]
-   return <div>
+   return (
+   <div
+   style={{
+      display: "flex",
+      flexWrap: "wrap",
+      justifyContent: "space-evenly",
+   }}>
       {
          characters.map(character =>(
             <Card 
@@ -24,5 +30,5 @@ export default function Cards({characters}) {
 
          ))
       }
-   </div>;
+   </div>);
 }
