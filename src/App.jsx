@@ -19,16 +19,15 @@ function App() {
          name: 'Earth (C-137)',
          url: 'https://rickandmortyapi.com/api/location/1',
       },
-      image: 'https://rickandmortyapi.com/api/character/avatar/1.jpeg',
+      image: 'https://rickandmort yapi.com/api/character/avatar/1.jpeg',
    };
-   const onSearch = () => {
+   const onSearch = (id) => {
       setCharacters([...characters, example]);
    }
 
    return (
       <div className='App'>
          <Nav onSearch={onSearch} />
-         <Cards characters={characters} />
          <hr />
          <Cards characters={characters} />
       </div>
