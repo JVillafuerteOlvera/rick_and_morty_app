@@ -23,12 +23,14 @@ function App() {
          }
       );
    }
-
+const onClose = id => {
+   setCharacters(characters.filter(char => char.id !== Number (id)))
+}
    return (
       <div className='App'>
          <Nav onSearch={onSearch} />
          <hr />
-         <Cards characters={characters} />
+         <Cards characters={characters} onClose={onClose}/>
       </div>
    );
 }

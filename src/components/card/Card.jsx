@@ -8,7 +8,7 @@ export default function Card(props) {
          padding: "20px",
          borderRadius: "15px",
       }}>
-        <button onClick={props.onClose}>X</button>
+        <button onClick={() => props.onClose(props.id)}>X</button>
          <h2>Name: {props.name}</h2>
          <h2>Status: {props.status}</h2>
          <h2>Id: {props.id}</h2>
