@@ -3,26 +3,25 @@ import './App.css';
 import Cards from './components/cards/Cards.jsx';
 import SearchBar from './components/searchbar/SearchBar.jsx';
 import Nav from './components/nav/nav.jsx';
+import axios from 'axios';
 
-
+const URL = "https://rym2.up.railway.app/api/character"
+const API_KEY = "henrystaff";
 
 function App() {
    
    const [characters, setCharacters] = useState ([]);
-   const example = {
-      id: 1,
-      name: 'Rick Sanchez',
-      status: 'Alive',
-      species: 'Human',
-      gender: 'Male',
-      origin: {
-         name: 'Earth (C-137)',
-         url: 'https://rickandmortyapi.com/api/location/1',
-      },
-      image: 'https://rickandmort yapi.com/api/character/avatar/1.jpeg',
-   };
-   const onSearch = (id) => {
-      setCharacters([...characters, example]);
+   
+   function onSearch(id) {
+      axios(`${URL}/${id}?key=${API_KEY}`).then(
+         ({ data }) => {
+            if (data.name) {
+               setCharacters([...characters, data]);
+            } else {
+               window.alert('¡No hay personajes con este ID!');
+            }
+         }
+      );
    }
 
    return (
