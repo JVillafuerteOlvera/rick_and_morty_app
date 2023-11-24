@@ -13,6 +13,13 @@ function App() {
    const [characters, setCharacters] = useState ([]);
    
    function onSearch(id) {
+      const characerId = characters.filter(
+      char  => char.id === Number(id))
+      
+      if (characerId.length) {
+         return alert(`${characerId[0].name} ya existe!`)
+      }
+
       axios(`${URL}/${id}?key=${API_KEY}`).then(
          ({ data }) => {
             if (data.name) {
