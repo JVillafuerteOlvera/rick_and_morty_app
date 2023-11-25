@@ -23,7 +23,8 @@ function App() {
          return alert(`${characerId[0].name} ya existe!`)
       }
 
-      axios(`${URL}/${id}?key=${API_KEY}`).then(
+      axios(`${URL}/${id}?key=${API_KEY}`)
+         .then(
          ({ data }) => {
             if (data.name) {
                setCharacters([...characters, data]);
@@ -40,7 +41,7 @@ const onClose = id => {
       <div className='App'>
          <Nav onSearch={onSearch} />
          <Routes>
-             <Route path='/home'
+             <Route path='/'
              element={<Cards characters={characters}
             onClose={onClose} />}
              />
