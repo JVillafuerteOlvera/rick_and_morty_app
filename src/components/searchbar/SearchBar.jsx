@@ -13,6 +13,16 @@ export default function SearchBar(props) {
       setId("");
    }
 
+   const getRandomNumber = () => {
+      const randomNumber = Math.floor(Math.random()*870) + 1
+      return randomNumber
+   }
+   const handleToogle = e => { 
+      e.preventDefault()
+      props.onSearch(getRandomNumber())
+      setId("");
+   }
+
    return (
       <div>
          <input
@@ -24,6 +34,7 @@ export default function SearchBar(props) {
             onChange={handleChange}
          />
          <button onClick={handleOnClick}>Search</button>
+         <button onClick={handleToogle}>Random</button>
       </div>
    );
 }
