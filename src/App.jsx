@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import './App.css';
 import Cards from './components/cards/Cards.jsx';
-import SearchBar from './components/searchbar/SearchBar.jsx';
-import Nav from './components/nav/nav.jsx';
+import Nav from './components/nav/Nav.jsx';
 import axios from 'axios';
-import { Route, Routes } from "react-router-dom"
+import { Route, Routes, useNavigate } from "react-router-dom"
 import About from './components/about/About.jsx';
 import Detail from './components/detail/Detail.jsx';
+import NotFound from './components/notfound/NotFound.jsx';
 
 const URL = "https://rym2.up.railway.app/api/character"
 const API_KEY = "henrystaff";
@@ -14,6 +14,7 @@ const API_KEY = "henrystaff";
 function App() {
    
    const [characters, setCharacters] = useState ([]);
+   const navigate = useNavigate()
    
    function onSearch(id) {
       const characerId = characters.filter(
@@ -33,6 +34,7 @@ function App() {
             }
          }
       );
+      navigate("/");
    }
 const onClose = id => {
    setCharacters(characters.filter(char => char.id !== Number (id)))
@@ -53,6 +55,9 @@ const onClose = id => {
                  path='/detail/:id'
                  element={<Detail />}
                  /> 
+            <Route 
+            path='*'
+            element={<NotFound />} />
          </Routes>
          <hr />
          </div>
