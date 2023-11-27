@@ -1,20 +1,21 @@
-import { useState } from 'react';
 import './App.css';
+import axios from 'axios';
+import { useState } from 'react';
+import { Route, Routes, useNavigate } from "react-router-dom"
 import Cards from './components/cards/Cards.jsx';
 import Nav from './components/nav/Nav.jsx';
-import axios from 'axios';
-import { Route, Routes, useNavigate } from "react-router-dom"
 import About from './components/about/About.jsx';
 import Detail from './components/detail/Detail.jsx';
 import NotFound from './components/notfound/NotFound.jsx';
+import Form from './components/form/Form.jsx';
 
 const URL = "https://rym2.up.railway.app/api/character"
 const API_KEY = "henrystaff";
 
 function App() {
    
-   const [characters, setCharacters] = useState ([]);
    const navigate = useNavigate()
+   const [characters, setCharacters] = useState ([]);
    
    function onSearch(id) {
       const characerId = characters.filter(
@@ -43,7 +44,12 @@ const onClose = id => {
       <div className='App'>
          <Nav onSearch={onSearch} />
          <Routes>
-             <Route path='/'
+            <Route
+            path='/'
+            element={<Form />}
+            />
+             <Route 
+             path='/'
              element={<Cards characters={characters}
             onClose={onClose} />}
              />
