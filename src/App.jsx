@@ -1,7 +1,7 @@
 import './App.css';
 import axios from 'axios';
 import { useState } from 'react';
-import { Route, Routes, useNavigate } from "react-router-dom"
+import { Route, Routes, useLocation, useNavigate } from "react-router-dom"
 import Cards from './components/cards/Cards.jsx';
 import Nav from './components/nav/Nav.jsx';
 import About from './components/about/About.jsx';
@@ -13,8 +13,9 @@ const URL = "https://rym2.up.railway.app/api/character"
 const API_KEY = "henrystaff";
 
 function App() {
-   
+
    const navigate = useNavigate()
+   const location = useLocation()
    const [characters, setCharacters] = useState ([]);
    
    function onSearch(id) {
@@ -42,12 +43,14 @@ const onClose = id => {
 }
    return (
       <div className='App'>
-         <Nav onSearch={onSearch} />
+         {
+            location.pathname !== "/! " &&    <Nav onSearch={onSearch}/>
+         }
          <Routes>
-            <Route
+              <Route
             path='/'
             element={<Form />}
-            />
+            /> 
              <Route 
              path='/'
              element={<Cards characters={characters}
