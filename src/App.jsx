@@ -1,6 +1,6 @@
 import './App.css';
 import axios from 'axios';
-import { useState } from 'react';
+import {useEffect, useState } from 'react';
 import { Route, Routes, useLocation, useNavigate } from "react-router-dom"
 import Cards from './components/cards/Cards.jsx';
 import Nav from './components/nav/Nav.jsx';
@@ -41,6 +41,21 @@ function App() {
 const onClose = id => {
    setCharacters(characters.filter(char => char.id !== Number (id)))
 }
+
+const [access, setAccess] = useState(false);
+const EMAIL = 'ejemplo@gmail.com';
+const PASSWORD = '123456';
+
+function login(userData) {
+   if (userData.password === PASSWORD && userData.email === EMAIL) {
+      setAccess(true);
+      navigate('/home');
+   }
+}
+
+useEffect(() => {
+   !access && navigate('/');
+}, [access]);
    return (
       <div className='App'>
          {

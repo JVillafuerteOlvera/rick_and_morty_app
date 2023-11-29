@@ -1,12 +1,18 @@
 import React, { useState } from "react";
+import validation from "../../utils/validation"
 
 const banner = "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Rick_and_Morty.svg/2560px-Rick_and_Morty.svg.png"
 
 export default function Form(props) {
     const [userData, setUserData] = useState({     
     email:"",
-    password:"."
+    password:""
     });
+    const [errors, setErrors ] = useState({
+        email:"Ingrese su email",
+    password:"Ingrese su password"
+    })
+
 
     const handleChange = (event) => {
         const {name, value} =  event.target; 
@@ -15,9 +21,15 @@ export default function Form(props) {
             [name]: value
             
         })
-        console.log("value: ", value)   
+          setErrors(validation({
+            ...userData,
+            [name]: value
+          }));
     }
-
+    const handleSubmit = event => {
+        event.preventDefault();
+        props.login(userData);
+    }
     return (
     <div>
         <img 
@@ -25,7 +37,8 @@ export default function Form(props) {
         style={{width: "300px"}} 
         alt="" 
         />
-        <form >
+        <form onSubmit={handleSubmit} >
+             
             <label>email: </label>
             <input 
                type="text "
@@ -34,7 +47,7 @@ export default function Form(props) {
                onChange={handleChange}
                placeholder="Ingresar email..."/>
                
-            <br /> 
+            <p style={{color:"coral"}}> {errors.email ? errors.email : null} </p> 
 
             <label>Password: </label>
             <input 
@@ -43,12 +56,17 @@ export default function Form(props) {
               name= "password"
               value= {userData.password}
               onChange={handleChange}
-              placeholder="Ingresar password..."
-              />
+              placeholder="Ingresar password..."/>
+
+<p style={{color:"coral"}}> {errors.password && errors.password } </p> 
            
             <hr /> 
 
-            <button type= "sumbit">  Enviar</button>
+            <button 
+            type= "sumbit"
+            disabled={errors.email || errors.password}
+            >  
+            Enviar</button>
 
         </form>
     </div>)
