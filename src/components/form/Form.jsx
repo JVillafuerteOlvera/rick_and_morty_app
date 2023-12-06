@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import validation from "../../utils/validation"
 
-const banner = "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Rick_and_Morty.svg/2560px-Rick_and_Morty.svg.png"
+const banner = "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Rick_and_Morty.svg/2560px-Rick_and_Morty.svg.png";
 
 export default function Form(props) {
     const [userData, setUserData] = useState({     
@@ -11,7 +11,7 @@ export default function Form(props) {
     const [errors, setErrors ] = useState({
         email:"Ingrese su email",
     password:"Ingrese su password"
-    })
+    });
 
 
     const handleChange = (event) => {
@@ -39,7 +39,7 @@ export default function Form(props) {
         />
         <form onSubmit={handleSubmit} >
              
-            <label>email: </label>
+            <label>email:</label>
             <input 
                type="text "
                name="email"
@@ -49,7 +49,7 @@ export default function Form(props) {
                
             <p style={{color:"coral"}}> {errors.email ? errors.email : null} </p> 
 
-            <label>Password: </label>
+            <label>Password:</label>
             <input 
             type="password"
               key="password"
@@ -66,8 +66,10 @@ export default function Form(props) {
             type= "sumbit"
             disabled={errors.email || errors.password}
             >  
-            Enviar</button>
+            Enviar
+            </button>
 
         </form>
-    </div>)
+    </div>
+    );
 }
