@@ -3,12 +3,12 @@ import axios from "axios";
 import { useEffect, useState } from 'react';
 import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import About from './components/about/About.jsx';
-import Cards from './components/cards/Cards.jsx';
-import Detail from './components/detail/Detail.jsx';
+import Cards from './components/cards/Cards.jsx';                                                                           
 import Favorites from './components/favorites/Favorites.jsx';
 import Form from './components/form/Form.jsx';
 import Nav from './components/nav/Nav.jsx';
 import NotFound from './components/notfound/NotFound.jsx';
+import Detail from './components/detail/Detail.jsx';
 
 const URL = "https://rym2.up.railway.app/api/character";
 const API_KEY = "henrystaff";
@@ -20,8 +20,7 @@ function App() {
    
    const [characters, setCharacters] = useState([]);
 
-   function onSearch(id) {
-      // Verificar si existe el personaje
+   function onSearch(id) { 
       const characterId = characters.filter(char => char.id === Number(id));
 
       if (characterId.length) {
@@ -88,7 +87,7 @@ function App() {
             />
             <Route
                path="/detail/:id"
-               element={<Detail />}
+               element={<Detail/>}
             />
             <Route
                path="/favorites"

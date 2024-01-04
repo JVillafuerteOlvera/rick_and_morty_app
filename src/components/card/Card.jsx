@@ -1,7 +1,20 @@
+import { useState } from "react";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 
 export default function Card(props) {
-   
+
+   const dispatch = useDispatch
+   const [isFav, setIsFav ] =  useState(false)
+   const handleFavorite = () =>{
+      if(isFav){
+         setIsFav(false);
+         dispatch(remove(props.id));  
+      } else {
+         setIsFav(true);
+         dispatch(addFav(props))
+      }
+   }
    return (
       <div
       style={{
@@ -9,7 +22,16 @@ export default function Card(props) {
          margin: "20px",
          padding: "20px",
          borderRadius: "15px",
-      }}>
+      }}
+      >
+      
+      {
+            isFav ? (
+               <button onClick={handleFavorite}>❤️</button>
+            ) : (
+               <button onClick={handleFavorite}>🤍</button>
+            )
+         }
          
             
         <button onClick={() => props.onClose(props.id)}>X</button>
